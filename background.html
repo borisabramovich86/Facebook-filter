@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload='startRequest()'>
+    <script>
+
+        var i =0;
+        function getUnreadItems(callback) {
+//            $.ajax(..., function(data) {
+//                process(data);
+//                callback(data);
+//            });
+
+            i++;
+            console.log(i);
+            callback({
+                unreadItems: i
+            });
+        }
+
+        function updateBadge() {
+            getUnreadItems(function(data) {
+                chrome.browserAction.setBadgeText({text:data.unreadItems});
+            });
+        }
+
+        var pollInterval = 1000 * 5; // 1 minute, in milliseconds
+
+        function startRequest() {
+            updateBadge();
+            window.setTimeout(startRequest, pollInterval);
+        }
+    </script>
+</body>
+</html>

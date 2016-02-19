@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "facebook-post-filter",
+  "version": "1.0",
+  "description": "Filter unwanted posts",
+
+  "browser_action": {
+    "default_icon": "funnel.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.facebook.com/*","https://www.facebook.com/*"
+      ],
+      "js": ["jquery-1.12.0.min.js","contentScript.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
