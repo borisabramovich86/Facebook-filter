@@ -4,7 +4,7 @@ var status = "active";
 
 var removeLikes = function(){
     console.log("removal function called!");
-    var nodes = document.evaluate(".//*[contains(@class,'fcg') and contains(., 'liked this')]", document, null, XPathResult.ANY_TYPE, null);
+    var nodes = document.evaluate(".//*[contains(@class,'fcg') and (contains(., 'liked this') or contains(., 'commented on this'))]", document, null, XPathResult.ANY_TYPE, null);
     while(nodes){
         var node = nodes.iterateNext();
         var parentNode = document.evaluate("./ancestor::div[contains(concat(' ', @class, ' '), ' _5jmm ')]", node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
